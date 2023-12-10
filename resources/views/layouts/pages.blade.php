@@ -16,7 +16,7 @@
     </head>
     <body class="font-sans antialiased text-gray-100">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+            @include('layouts.pages-navigation')
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -29,12 +29,15 @@
 
             <!-- Page Content -->
             <main>
-                @if(isset($slot))
+                @if (isset($slot))
                     {{ $slot }}
                 @else
                     @yield('content')
                 @endif
             </main>
         </div>
+            
+        <!-- Scripts -->
+        <script src="{{ URL::asset('js/scripts.js') }}"></script>
     </body>
 </html>
