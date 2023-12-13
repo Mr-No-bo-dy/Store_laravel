@@ -47,7 +47,7 @@ class ProducerController extends Controller
         ];
         Producer::create($data);
 
-        return redirect()->route('producers');
+        return redirect()->route('admin.producers');
     }
 
     /**
@@ -77,7 +77,7 @@ class ProducerController extends Controller
             $producer->save();
         }
 
-        return redirect()->route('producers');
+        return redirect()->route('admin.producers');
     }
 
     /**

@@ -21,6 +21,16 @@
                         {{ __('Producers') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('admin.categories')" :active="request()->routeIs('admin.categories')">
+                        {{ __('Categories') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('admin.subcategories')" :active="request()->routeIs('admin.subcategories')">
+                        {{ __('SubCategories') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -80,6 +90,12 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.producers')" :active="request()->routeIs('admin.producers')">
                 {{ __('Producers') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.categories')" :active="request()->routeIs('admin.categories')">
+                {{ __('Categories') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.subcategories')" :active="request()->routeIs('admin.subcategories')">
+                {{ __('SubCategories') }}
             </x-responsive-nav-link>
         </div>
 
