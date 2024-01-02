@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('id_subcategory')->constrained('subcategories');
             $table->string('name');
             $table->string('description')->nullable();
-            $table->integer('status')->default(0);
+            $table->integer('status')->default(0);  // 0 - відсутній, 1 - під замовлення, 2 - присутній
             $table->timestamps();
             $table->softDeletes();
         });

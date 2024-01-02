@@ -5,14 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Category;
 use App\Models\Admin\Subcategory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SubcategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         $subcategories = Subcategory::withTrashed()->get();
 
@@ -21,8 +25,11 @@ class SubcategoryController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param int $idSubcategory
+     * @return View
      */
-    public function show($idSubcategory)
+    public function show(int $idSubcategory): View
     {
         $subcategory = Subcategory::findOrFail($idSubcategory);
 
@@ -31,8 +38,10 @@ class SubcategoryController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         $categories = Category::withTrashed()->get();
 
@@ -41,8 +50,11 @@ class SubcategoryController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $data = [
             'id_category' => $request->post('id_category'),
@@ -51,13 +63,16 @@ class SubcategoryController extends Controller
         ];
         Subcategory::create($data);
 
-        return redirect()->route('admin.subcategories');
+        return redirect()->route('admin.subcategory.index');
     }
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param int $idSubcategory
+     * @return View
      */
-    public function edit($idSubcategory)
+    public function edit(int $idSubcategory): View
     {
         $categories = Category::withTrashed()->get();
         $subcategory = Subcategory::findOrFail($idSubcategory);
@@ -67,8 +82,11 @@ class SubcategoryController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
         $idSubcategory = $request->post('id');
         $setSubcategoryData = [
@@ -83,13 +101,16 @@ class SubcategoryController extends Controller
             $subcategory->save();
         }
 
-        return redirect()->route('admin.subcategories');
+        return redirect()->route('admin.subcategory.index');
     }
 
     /**
      * Soft-Delete the specified resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function delete(Request $request)
+    public function delete(Request $request): RedirectResponse
     {
         if ($request->has('deleteSubcategory')) {
             $idSubcategory = $request->post('id');
@@ -101,8 +122,11 @@ class SubcategoryController extends Controller
 
     /**
      * Restore the specified resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function restore(Request $request)
+    public function restore(Request $request): RedirectResponse
     {
         if ($request->has('restoreSubcategory')) {
             $idSubcategory = $request->post('id');
@@ -114,8 +138,11 @@ class SubcategoryController extends Controller
 
     /**
      * Delete the specified resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): RedirectResponse
     {
         if ($request->has('destroySubcategory')) {
             $idSubcategory = $request->post('id');

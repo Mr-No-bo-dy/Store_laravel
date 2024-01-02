@@ -3,8 +3,8 @@
 @section('content')
 <h1>Category #{{ $category->id }}</h1>
 <p>Name: {{ $category->name }}</p>
-<div><a class="text-blue-500 bg-yellow-300" href="{{ route('admin.categoryEdit', $category->id) }}">Edit</a></div>
-<form action="{{ route('admin.categoryDestroy') }}" method="post">
+<div><a class="text-blue-500 bg-yellow-300" href="{{ route('admin.category.edit', $category->id) }}">Edit</a></div>
+<form action="{{ route('admin.category.destroy') }}" method="post">
     @csrf
     @method('delete')
 

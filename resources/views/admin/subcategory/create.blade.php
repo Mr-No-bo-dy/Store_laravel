@@ -3,7 +3,7 @@
 @section('content')
 <div class="text-gray-900">
     <h1>Add subcategory</h1>
-    <form action="{{ route('admin.subcategoryStore') }}" method="post">
+    <form action="{{ route('admin.subcategory.store') }}" method="post">
         @csrf
 
         <select name="id_category">

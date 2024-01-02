@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="text-gray-600">
-    <h1>Update subcategory</h1>
-    <form action="{{ route('admin.subcategoryUpdate') }}" method="post">
+    <h1>Update Subcategory</h1>
+    <form action="{{ route('admin.subcategory.update') }}" method="post">
         @csrf
         @method('patch')
 
@@ -13,9 +13,9 @@
             @endforeach
         </select>
         <input type="hidden" name="id" value="{{ $subcategory->id }}">
-        <input type="text" name="name" value="{{ $subcategory->name }}">
-        <input type="text" name="description" value="{{ $subcategory->description }}">
-        <button class="text-blue-500 bg-white" type="submit" name="updateProducer" value="1">Update Producer</button>
+        <input type="text" name="name" value="{{ old('name', $subcategory->name) }}">
+        <input type="text" name="description" value="{{ old('description', $subcategory->description) }}">
+        <button class="text-blue-500 bg-white" type="submit" name="updateSubcategory" value="1">Update Subcategory</button>
     </form>
 </div>
 @endsection

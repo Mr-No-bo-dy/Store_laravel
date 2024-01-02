@@ -3,7 +3,7 @@
 @section('content')
 <div class="text-gray-900">
     <h1>Add producer</h1>
-    <form action="{{ route('admin.producerStore') }}" method="post">
+    <form action="{{ route('admin.producer.store') }}" method="post">
         @csrf
 
         <input type="text" name="name">

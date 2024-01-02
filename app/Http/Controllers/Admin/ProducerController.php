@@ -4,14 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Producer;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ProducerController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         $producers = Producer::withTrashed()->get();
 
@@ -20,8 +24,11 @@ class ProducerController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param int $idProducer
+     * @return View
      */
-    public function show($idProducer)
+    public function show(int $idProducer): View
     {
         $producer = Producer::findOrFail($idProducer);
 
@@ -30,16 +37,21 @@ class ProducerController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('admin.producer.create');
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $data = [
             'name' => $request->post('name'),
@@ -47,13 +59,16 @@ class ProducerController extends Controller
         ];
         Producer::create($data);
 
-        return redirect()->route('admin.producers');
+        return redirect()->route('admin.producer.index');
     }
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param int $idProducer
+     * @return View
      */
-    public function edit($idProducer)
+    public function edit(int $idProducer): View
     {
         $producer = Producer::findOrFail($idProducer);
 
@@ -62,8 +77,11 @@ class ProducerController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
         $idProducer = $request->post('id');
         $setProducerData = [
@@ -77,13 +95,16 @@ class ProducerController extends Controller
             $producer->save();
         }
 
-        return redirect()->route('admin.producers');
+        return redirect()->route('admin.producer.index');
     }
 
     /**
      * Soft-Delete the specified resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function delete(Request $request)
+    public function delete(Request $request): RedirectResponse
     {
         if ($request->has('deleteProducer')) {
             $idProducer = $request->post('id');
@@ -95,8 +116,11 @@ class ProducerController extends Controller
 
     /**
      * Restore the specified resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function restore(Request $request)
+    public function restore(Request $request): RedirectResponse
     {
         if ($request->has('restoreProducer')) {
             $idProducer = $request->post('id');
@@ -108,8 +132,11 @@ class ProducerController extends Controller
 
     /**
      * Delete the specified resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): RedirectResponse
     {
         if ($request->has('destroyProducer')) {
             $idProducer = $request->post('id');

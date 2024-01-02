@@ -4,14 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Category;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         $categories = Category::withTrashed()->get();
 
@@ -20,8 +24,11 @@ class CategoryController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param int $idCategory
+     * @return View
      */
-    public function show($idCategory)
+    public function show(int $idCategory): View
     {
         $category = Category::findOrFail($idCategory);
 
@@ -30,8 +37,10 @@ class CategoryController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('admin.category.create');
     }
@@ -43,13 +52,16 @@ class CategoryController extends Controller
     {
         Category::create(['name' => $request->post('name')]);
 
-        return redirect()->route('admin.categories');
+        return redirect()->route('admin.category.index');
     }
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param int $idCategory
+     * @return View
      */
-    public function edit($idCategory)
+    public function edit(int $idCategory): View
     {
         $category = Category::findOrFail($idCategory);
 
@@ -58,8 +70,11 @@ class CategoryController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
         $idCategory = $request->post('id');
 
@@ -69,13 +84,16 @@ class CategoryController extends Controller
             $category->save();
         }
 
-        return redirect()->route('admin.categories');
+        return redirect()->route('admin.category.index');
     }
 
     /**
      * Soft-Delete the specified resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function delete(Request $request)
+    public function delete(Request $request): RedirectResponse
     {
         if ($request->has('deleteCategory')) {
             $idCategory = $request->post('id');
@@ -87,8 +105,11 @@ class CategoryController extends Controller
 
     /**
      * Restore the specified resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function restore(Request $request)
+    public function restore(Request $request): RedirectResponse
     {
         if ($request->has('restoreCategory')) {
             $idCategory = $request->post('id');
@@ -100,8 +121,11 @@ class CategoryController extends Controller
 
     /**
      * Delete the specified resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): RedirectResponse
     {
         if ($request->has('destroyCategory')) {
             $idCategory = $request->post('id');

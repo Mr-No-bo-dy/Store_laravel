@@ -5,8 +5,8 @@
 {{--<p>Category...: {{ $subcategory->id_category }}</p>--}}
 <p>Name: {{ $subcategory->name }}</p>
 <p>Description: {{ $subcategory->description }}</p>
-<div><a class="text-blue-500 bg-yellow-300" href="{{ route('admin.subcategoryEdit', $subcategory->id) }}">Edit</a></div>
-<form action="{{ route('admin.subcategoryDestroy') }}" method="post">
+<div><a class="text-blue-500 bg-yellow-300" href="{{ route('admin.subcategory.edit', $subcategory->id) }}">Edit</a></div>
+<form action="{{ route('admin.subcategory.destroy') }}" method="post">
     @csrf
     @method('delete')
 

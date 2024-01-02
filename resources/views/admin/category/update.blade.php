@@ -3,7 +3,7 @@
 @section('content')
 <div class="text-gray-600">
     <h1>Update category</h1>
-    <form action="{{ route('admin.categoryUpdate') }}" method="post">
+    <form action="{{ route('admin.category.update') }}" method="post">
         @csrf
         @method('patch')
 

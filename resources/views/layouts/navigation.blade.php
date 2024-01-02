@@ -17,18 +17,23 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.producers')" :active="request()->routeIs('admin.producers')">
+                    <x-nav-link :href="route('admin.producer.index')" :active="request()->routeIs('admin.producer.index')">
                         {{ __('Producers') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.categories')" :active="request()->routeIs('admin.categories')">
+                    <x-nav-link :href="route('admin.category.index')" :active="request()->routeIs('admin.category.index')">
                         {{ __('Categories') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.subcategories')" :active="request()->routeIs('admin.subcategories')">
+                    <x-nav-link :href="route('admin.subcategory.index')" :active="request()->routeIs('admin.subcategory.index')">
                         {{ __('SubCategories') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')">
+                        {{ __('Products') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -88,14 +93,17 @@
             <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.producers')" :active="request()->routeIs('admin.producers')">
+            <x-responsive-nav-link :href="route('admin.producer.index')" :active="request()->routeIs('admin.producer.index')">
                 {{ __('Producers') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.categories')" :active="request()->routeIs('admin.categories')">
+            <x-responsive-nav-link :href="route('admin.category.index')" :active="request()->routeIs('admin.category.index')">
                 {{ __('Categories') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.subcategories')" :active="request()->routeIs('admin.subcategories')">
+            <x-responsive-nav-link :href="route('admin.subcategory.index')" :active="request()->routeIs('admin.subcategory.index')">
                 {{ __('SubCategories') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')">
+                {{ __('Products') }}
             </x-responsive-nav-link>
         </div>
 
