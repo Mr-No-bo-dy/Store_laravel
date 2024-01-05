@@ -30,7 +30,7 @@ class ProducerController extends Controller
      */
     public function show(int $idProducer): View
     {
-        $producer = Producer::findOrFail($idProducer);
+        $producer = Producer::withTrashed()->findOrFail($idProducer);
 
         return view('admin.producer.show', compact('producer'));
     }

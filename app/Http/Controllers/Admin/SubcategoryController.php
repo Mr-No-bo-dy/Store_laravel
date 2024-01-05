@@ -31,7 +31,7 @@ class SubcategoryController extends Controller
      */
     public function show(int $idSubcategory): View
     {
-        $subcategory = Subcategory::findOrFail($idSubcategory);
+        $subcategory = Subcategory::withTrashed()->findOrFail($idSubcategory);
 
         return view('admin.subcategory.show', compact('subcategory'));
     }
@@ -43,7 +43,7 @@ class SubcategoryController extends Controller
      */
     public function create(): View
     {
-        $categories = Category::withTrashed()->get();
+        $categories = Category::all(['id', 'name']);
 
         return view('admin.subcategory.create', compact('categories'));
     }
@@ -74,7 +74,7 @@ class SubcategoryController extends Controller
      */
     public function edit(int $idSubcategory): View
     {
-        $categories = Category::withTrashed()->get();
+        $categories = Category::all(['id', 'name']);
         $subcategory = Subcategory::findOrFail($idSubcategory);
 
         return view('admin.subcategory.update', compact('categories', 'subcategory'));

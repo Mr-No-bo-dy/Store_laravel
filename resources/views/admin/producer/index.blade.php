@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="wrapper mx-20">
+<div class="mx-20">
     <h1>Producers</h1>
     <div><a class="text-blue-500 bg-green-300" href="{{ route('admin.producer.create') }}">Create</a></div>
 

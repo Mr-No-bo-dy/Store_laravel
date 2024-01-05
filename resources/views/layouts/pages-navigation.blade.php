@@ -35,12 +35,12 @@
                 </div>
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
-                        {{-- <a href="{{ route('index') }}"
+                         <a href="{{ route('index') }}"
                             class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                            aria-current="page">{{ __('pages-nav.home') }}</a> --}}
-                        {{-- <a href="{{ route('product') }}"
+                            aria-current="page">{{ __('Main') }}</a>
+                        <a href="{{ route('product.index') }}"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                            aria-current="page">{{ __('pages-nav.products') }}</a> --}}
+                            aria-current="page">{{ __('Products') }}</a>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                             id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only"></span>
                             <span
-                                class="inline-block text-base text-gray-400 hover:text-white">{{ auth()->user()->name }}</span>
+                                class="inline-block text-base text-gray-400 hover:text-white">{{ Auth::user()->name ?? '' }}</span>
                         </button>
                     </div>
 
@@ -70,7 +70,7 @@
                             role="menuitem" tabindex="-1" id="user-menu-item-0">{{ __('Profile') }}</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button class="block w-full px-4 py-2 text-left text-sm text-gray-300 hover:bg-gray-700" 
+                            <button class="block w-full px-4 py-2 text-left text-sm text-gray-300 hover:bg-gray-700"
                             type="submit">{{ 'Log out' }}</button>
                         </form>
                     </div>
@@ -83,7 +83,7 @@
                             <a href="{{ url('profile.edit') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Profile</a>
                         @else
                             <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-    
+
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
                             @endif
@@ -98,12 +98,12 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="sm:hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2">
-            {{-- <a href="{{ route('index') }}"
+            <a href="{{ route('index') }}"
                 class="bg-gray-900 text-white hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-                aria-current="page">{{ __('pages-nav.home') }}</a> --}}
-            {{-- <a href="{{ route('product') }}"
+                aria-current="page">{{ __('Main') }}</a>
+            <a href="{{ route('product.index') }}"
                 class="bg-gray-900 text-white hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-                aria-current="page">{{ __('pages-nav.products') }}</a> --}}
+                aria-current="page">{{ __('Products') }}</a>
         </div>
     </div>
 </nav>

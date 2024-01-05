@@ -30,7 +30,7 @@ class CategoryController extends Controller
      */
     public function show(int $idCategory): View
     {
-        $category = Category::findOrFail($idCategory);
+        $category = Category::withTrashed()->findOrFail($idCategory);
 
         return view('admin.category.show', compact('category'));
     }

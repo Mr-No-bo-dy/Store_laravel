@@ -14,6 +14,31 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
+     * Display a listing of the Products.
+     *
+     * @return View
+     */
+    public function index(): View
+    {
+        $products = Product::withTrashed()->get();
+
+        return view('admin.product.index', compact('products'));
+    }
+
+    /**
+     * Display the specified Product.
+     *
+     * @param int $idProduct
+     * @return View
+     */
+    public function show(int $idProduct): View
+    {
+        $product = Product::withTrashed()->findOrFail($idProduct);
+
+        return view('admin.product.show', compact('product'));
+    }
+
+    /**
      * Show the form for creating a new Product.
      *
      * @return View
@@ -25,7 +50,7 @@ class ProductController extends Controller
         $subcategories = Subcategory::all(['id', 'name']);
         $statuses = Product::distinct()->withTrashed()->orderBy('status', 'asc')->pluck('status')->all();
 
-        return view('product.create', compact('producers', 'categories', 'subcategories', 'statuses'));
+        return view('admin.product.create', compact('producers', 'categories', 'subcategories', 'statuses'));
     }
 
     /**
@@ -42,11 +67,11 @@ class ProductController extends Controller
             'id_subcategory' => $request->post('id_subcategory'),
             'name' => $request->post('name'),
             'description' => $request->post('description'),
-            'status' => 0,
+            'status' => $request->post('status') ?? 0,
         ];
         Product::create($data);
 
-        return redirect()->route('product.index');
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -63,7 +88,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($idProduct);
         $statuses = Product::distinct()->withTrashed()->orderBy('status', 'asc')->pluck('status')->all();
 
-        return view('product.update', compact('producers', 'categories', 'subcategories', 'statuses', 'product'));
+        return view('admin.product.update', compact('producers', 'categories', 'subcategories', 'statuses', 'product'));
     }
 
     /**
@@ -106,7 +131,7 @@ class ProductController extends Controller
             Product::findOrFail($idProduct)->delete();
         }
 
-        return back();
+        return redirect()->route('product.index');
     }
 
     /**
